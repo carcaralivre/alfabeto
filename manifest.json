@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Alfabeto",
+  "version": "1.0",
+  "description": "Ordena as abas da janela atual por domínio, de A a Z.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "alfabeto@local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": { "required": ["none"] }
+    }
+  },
+  "permissions": ["tabs", "theme"],
+  "background": { "scripts": ["background.js"] },
+  "action": {
+    "default_title": "Ordenar abas por domínio",
+    "default_icon": "icons/toolbar-dark.svg",
+    "theme_icons": [
+      { "light": "icons/toolbar-light.svg", "dark": "icons/toolbar-dark.svg", "size": 16 },
+      { "light": "icons/toolbar-light.svg", "dark": "icons/toolbar-dark.svg", "size": 32 }
+    ]
+  },
+  "icons": { "48": "icons/alfabeto.svg", "96": "icons/alfabeto.svg" }
+}
