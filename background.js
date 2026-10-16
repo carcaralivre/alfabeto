@@ -25,9 +25,10 @@ async function paintIcon() {
 }
 browser.theme.onUpdated.addListener(paintIcon);
 
-// Sorting: by hostname without "www.", then by title. Pages without a web
-// domain (about:, file:, moz-extension:…) come first. Pinned tabs stay put,
-// and each tab group (or run of ungrouped tabs) is sorted on its own.
+// Sorting: domains with fewer tabs first, then by hostname without "www.",
+// then by title. Pages without a web domain (about:, file:, moz-extension:…)
+// come first. Pinned tabs stay put, and each tab group (or run of ungrouped
+// tabs) is sorted on its own.
 
 const collator = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
 
@@ -36,7 +37,12 @@ function domain(tab) {
   return url && /^https?:$/.test(url.protocol) ? url.hostname.replace(/^www\./, "") : "";
 }
 
-const compare = (a, b) => collator.compare(domain(a), domain(b)) || collator.compare(a.title, b.title);
+function sorted(run) {
+  const count = new Map();
+  for (const tab of run) count.set(domain(tab), (count.get(domain(tab)) ?? 0) + 1);
+  const size = tab => (domain(tab) ? count.get(domain(tab)) : 0);
+  return run.toSorted((a, b) => size(a) - size(b) || collator.compare(domain(a), domain(b)) || collator.compare(a.title, b.title));
+}
 
 browser.action.onClicked.addListener(async ({ windowId }) => {
   const tabs = await browser.tabs.query({ windowId, pinned: false });
@@ -48,7 +54,7 @@ browser.action.onClicked.addListener(async ({ windowId }) => {
   }
 
   for (const run of runs) {
-    const ids = run.toSorted(compare).map(t => t.id);
+    const ids = sorted(run).map(t => t.id);
     if (ids.every((id, i) => id === run[i].id)) continue;
     await browser.tabs.move(ids, { index: run[0].index });
     // tabs.move may change group membership at a group's edges; restore it.

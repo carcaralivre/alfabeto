@@ -2,10 +2,11 @@
 
 Extensão para Firefox que ordena as abas da janela atual por domínio, de A a Z.
 
-- Ordena pelo domínio sem "www." (www.google.com e google.com ficam juntos; mail.google.com fica à parte) e, dentro do mesmo domínio, pelo título.
+- Agrupa as abas pelo domínio sem "www." (www.google.com e google.com ficam juntos; mail.google.com fica à parte).
+- Os domínios com menos abas vêm primeiro; em caso de empate, ordem alfabética do domínio. Dentro do mesmo domínio, ordena pelo título.
 - Páginas sem domínio web (about:, file:, moz-extension:…) vão para o início.
 - Abas fixadas não são mexidas.
-- Cada grupo de abas é ordenado por dentro, sem sair do lugar; abas soltas entre grupos são ordenadas entre si.
+- Cada grupo de abas é ordenado por dentro, sem sair do lugar (a contagem de abas por domínio é feita dentro do grupo); abas soltas entre grupos são ordenadas entre si.
 
 ## Uso
 
