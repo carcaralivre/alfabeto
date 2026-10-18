@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Alfabeto",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Ordena as abas da janela atual por domínio, de A a Z.",
   "browser_specific_settings": {
     "gecko": {

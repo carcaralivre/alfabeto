@@ -1,14 +1,14 @@
 browser.runtime.onInstalled.addListener(paintIcon);
 browser.runtime.onStartup.addListener(paintIcon);
 
-// Toolbar icon: drawn in the theme's own icon color. Built-in themes that
-// don't declare colors fall back to the light/dark theme_icons in the manifest.
+// Toolbar icon: drawn in the theme's own icon color. The default theme declares no
+// colors, so it falls back to theme_icons, which use Firefox Nova's icon fill.
 
 const ICON = color => `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2.5v11M1.5 11l2.5 2.5L6.5 11"/><path d="M9 4h2.5M9 8h4M9 12h5.5"/></svg>`;
 
 async function paintIcon() {
   const { colors } = await browser.theme.getCurrent();
-  let color = colors?.icons || colors?.toolbar_text || colors?.bookmark_text;
+  let color = colors?.icons || colors?.toolbar_text || colors?.bookmark_text || colors?.tab_background_text;
   if (Array.isArray(color)) color = `rgb(${color.join(",")})`;
   if (!color) return browser.action.setIcon({ path: null });
 
