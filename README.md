@@ -12,15 +12,16 @@ Extensão para Firefox que ordena as abas da janela atual por domínio, de A a Z
 
 **Clique** no ícone da barra para ordenar as abas da janela.
 
-## Instalação para desenvolvimento
-
-Em `about:debugging#/runtime/this-firefox`, clique em **Carregar extensão temporária…** e escolha o `manifest.json`.
+## Desenvolvimento
 
 ```sh
 npx web-ext lint    # valida
-npx web-ext build   # gera o .zip
-npx web-ext sign --channel=unlisted --api-key=… --api-secret=…   # assina para instalar de vez
+npx web-ext build   # gera o .zip em web-ext-artifacts/
+npx web-ext sign --channel=unlisted --api-key=… --api-secret=…   # assina e gera o .xpi
+npx web-ext sign --channel=listed --api-key=… --api-secret=…     # submete à revisão da loja (addons.mozilla.org)
 ```
+
+Toda alteração precisa de um novo `version` no `manifest.json` antes de assinar.
 
 ## Licença
 
