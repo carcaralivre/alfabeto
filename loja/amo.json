@@ -1,0 +1,21 @@
+{
+  "name": {
+    "pt-BR": "Alfabeto"
+  },
+  "default_locale": "pt-BR",
+  "summary": {
+    "pt-BR": "Ordena as abas da janela atual por domínio, de A a Z. Um clique no ícone e as abas do mesmo site ficam juntas, as mais raras primeiro. Abas fixadas e grupos ficam no lugar."
+  },
+  "description": {
+    "pt-BR": "Extensão para Firefox que ordena as abas da janela atual por domínio, de A a Z.\n\n- Agrupa as abas pelo domínio sem \"www.\" (www.google.com e google.com ficam juntos; mail.google.com fica à parte).\n- Os domínios com menos abas vêm primeiro; em caso de empate, ordem alfabética do domínio. Dentro do mesmo domínio, ordena pelo título.\n- Páginas sem domínio web (about:, file:, moz-extension:…) vão para o início.\n- Abas fixadas não são mexidas.\n- Cada grupo de abas é ordenado por dentro, sem sair do lugar; abas soltas entre grupos são ordenadas entre si.\n\nUso: clique no ícone da barra para ordenar as abas da janela.\n\nNenhum dado sai do navegador."
+  },
+  "categories": [
+    "tabs"
+  ],
+  "homepage": {
+    "pt-BR": "https://github.com/carcaralivre/alfabeto"
+  },
+  "version": {
+    "license": "MPL-2.0"
+  }
+}
